@@ -37,7 +37,7 @@ run: little_os.iso
 
 serial: little_os.iso
 	qemu-system-i386 -cdrom little_os.iso \
-		-serial file:log
+		-serial stdio
 
 build/%.o: src/%.c
 	mkdir -p $(dir $@)
