@@ -1,5 +1,6 @@
 #include "../drivers/serial/serial.h"
-#include "../drivers/vga/vga.h"
+// #include "../drivers/vga/vga.h"
+// #include "../lib/stdio.h"
 
 int kmain() {
   /* Configure COM1 */
@@ -9,11 +10,13 @@ int kmain() {
   serial_configure_modem(SERIAL_COM1_BASE);
 
   /* VGA test */
-  char *buf = "----------Hello World!----------\n";
-  fb_write(buf, 33);
+  // char *buf = "----------Hello World!----------\n";
+  // fb_write(buf, 33);
 
   // char *buf2 = "Little_os is actually working...";
   //  fb_write(buf2, 32);
+  // char *buf2_bis = "Hello\0Test";
+  // fb_write(buf2_bis, 10);
 
   // char *buf3 = "\nhello worl\b\bd";
   //  fb_write(buf3, 14);
@@ -31,8 +34,15 @@ int kmain() {
   // fb_write(end, 10);
 
   /* Serial Test */
-  char *buf4 = "Hello Other World\n";
-  serial_write(SERIAL_COM1_BASE, buf4, 18);
+  // char *buf4 = "Hello Other World\n";
+  // serial_write(SERIAL_COM1_BASE, buf4, 18);
+
+  /* Stdio Test */
+  // putchar(DEVICE_VGA, 'A');
+  // printf(DEVICE_VGA, "Hello\n");
+  // int n = printf(DEVICE_VGA, "%c %s\n", 'B', "DAY");
+  // printf(DEVICE_VGA, "%d %x %u\n", n, 0x10, 50000);
+  // printf(DEVICE_VGA, "%% %t");
 
   return 35;
 }
