@@ -15,13 +15,14 @@
 #define FB_COLUMN_COUNT 80
 #define FB_TAB_SIZE 4
 #define FB_CELL_SIZE 2
-#define FB_FG_COLOR FB_GREEN
-#define FB_BG_COLOR FB_BLACK
 
 PRIVATE volatile char *fb = (char *)0x000B8000;
 // the frame buffer pointer
 PRIVATE unsigned short cursor_pos = 0;
 // the cursor position
+PRIVATE unsigned int fg_color = FB_WHITE;
+PRIVATE unsigned int bg_color = FB_BLACK;
+// the frame buffer default color
 
 /* fb_write_cell
  * Writes a character with the given foreground and background to position i
@@ -57,8 +58,7 @@ PRIVATE void fb_move_cell(unsigned int i, unsigned int j) {
  * */
 PRIVATE void fb_clear_row(unsigned int x) {
   for (unsigned int i = 0; i < FB_COLUMN_COUNT; i++) {
-    fb_write_cell(index_2d(i, x, FB_COLUMN_COUNT), ' ', FB_FG_COLOR,
-                  FB_BG_COLOR);
+    fb_write_cell(index_2d(i, x, FB_COLUMN_COUNT), ' ', fg_color, bg_color);
   }
 }
 
@@ -100,7 +100,7 @@ PUBLIC int fb_write(char *buf, unsigned int len) {
     } else if (buf[i] == '\b') {
       cursor_pos = cursor_pos == 0 ? 0 : cursor_pos - 1;
     } else {
-      fb_write_cell(cursor_pos, buf[i], FB_FG_COLOR, FB_BG_COLOR);
+      fb_write_cell(cursor_pos, buf[i], fg_color, bg_color);
       cursor_pos++;
     }
 
@@ -110,4 +110,9 @@ PUBLIC int fb_write(char *buf, unsigned int len) {
   }
   fb_move_cursor(cursor_pos);
   return (int)i; // TODO: Need to be checked twice
+}
+
+PUBLIC void fb_set_color(unsigned int fg, unsigned int bg) {
+  fg_color = fg;
+  bg_color = bg;
 }

@@ -6,6 +6,9 @@
 /* Device type used by putchar */
 enum { DEVICE_SERIAL, DEVICE_VGA };
 
+/* DIFFERENT COLOR LEVEL */
+enum { COLOR_DEBUG, COLOR_INFO, COLOR_ERROR, COLOR_RESET };
+
 /* The value returned by putchar and similar functions to indicate the
    end of the file.  */
 #define EOF (-1)
@@ -35,5 +38,13 @@ int vprintf(unsigned char device, const char *fmt, va_list list);
  * c : the character to print
  * */
 int putchar(unsigned char device, char c);
+
+/* set_color
+ * Change the color of the output device
+ *
+ * device : the target device
+ * level : the color level
+ * */
+void set_color(unsigned int device, unsigned int level);
 
 #endif // STDIO_H

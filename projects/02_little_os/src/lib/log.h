@@ -1,9 +1,7 @@
 #ifndef LOG_H
 #define LOG_H
 
-enum { LOG_DEBUG, LOG_INFO, LOG_ERROR };
-
-#include "./stdio.h"
+enum { LOG_DEBUG, LOG_INFO, LOG_ERROR, LOG_RESET };
 
 /* log_msg
  * Print log messages into a specific device

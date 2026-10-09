@@ -20,7 +20,7 @@ int kmain() {
   // fb_write(buf2_bis, 10);
 
   // char *buf3 = "\nhello worl\b\bd";
-  //  fb_write(buf3, 14);
+  // fb_write(buf3, 14);
 
   /* Scroll test */
   // char line[9] = "\nLine 00";
@@ -48,6 +48,9 @@ int kmain() {
   /* Log Test */
   log_msg(DEVICE_VGA, LOG_DEBUG, "test debug");
   log_msg(DEVICE_VGA, LOG_INFO, "test info");
+  log_msg(DEVICE_VGA, LOG_ERROR, "test error");
+  log_msg(DEVICE_SERIAL, LOG_DEBUG, "test debug");
+  log_msg(DEVICE_SERIAL, LOG_INFO, "test info");
   log_msg(DEVICE_SERIAL, LOG_ERROR, "test error");
 
   return 35;

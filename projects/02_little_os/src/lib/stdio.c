@@ -86,3 +86,38 @@ PUBLIC int printf(unsigned char device, const char *fmt, ...) {
   va_end(ap);
   return n;
 }
+
+PUBLIC void set_color(unsigned int device, unsigned int level) {
+  switch (level) {
+  case COLOR_DEBUG: {
+    if (device == DEVICE_VGA)
+      fb_set_color(FB_CYAN, FB_BLACK);
+    else if (device == DEVICE_SERIAL)
+      dev_write(device, "\033[1;36m", 6);
+    break;
+  }
+  case COLOR_INFO: {
+    if (device == DEVICE_VGA)
+      fb_set_color(FB_GREEN, FB_BLACK);
+    else if (device == DEVICE_SERIAL)
+      dev_write(device, "\033[1;32m", 6);
+    break;
+  }
+  case COLOR_ERROR: {
+    if (device == DEVICE_VGA)
+      fb_set_color(FB_RED, FB_BLACK);
+    else if (device == DEVICE_SERIAL)
+      dev_write(device, "\033[1;31m", 6);
+    break;
+  }
+  case COLOR_RESET: {
+    if (device == DEVICE_VGA)
+      fb_set_color(FB_WHITE, FB_BLACK);
+    else if (device == DEVICE_SERIAL)
+      dev_write(device, "\033[1;0m", 6);
+    break;
+  }
+  default:
+    break;
+  }
+}

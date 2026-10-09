@@ -32,4 +32,12 @@ enum {
 
 int fb_write(char *buf, unsigned int len);
 
+/* fb_set_color
+ * Change the color of the character on the VGA screen
+ *
+ * fg : foreground color
+ * bg : background color
+ * */
+void fb_set_color(unsigned int fg, unsigned int bg);
+
 #endif // VGA_H
