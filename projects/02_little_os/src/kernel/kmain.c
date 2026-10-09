@@ -1,6 +1,7 @@
 #include "../drivers/serial/serial.h"
 // #include "../drivers/vga/vga.h"
-// #include "../lib/stdio.h"
+#include "../lib/log.h"
+#include "../lib/stdio.h"
 
 int kmain() {
   /* Configure COM1 */
@@ -43,6 +44,11 @@ int kmain() {
   // int n = printf(DEVICE_VGA, "%c %s\n", 'B', "DAY");
   // printf(DEVICE_VGA, "%d %x %u\n", n, 0x10, 50000);
   // printf(DEVICE_VGA, "%% %t");
+
+  /* Log Test */
+  log_msg(DEVICE_VGA, LOG_DEBUG, "test debug");
+  log_msg(DEVICE_VGA, LOG_INFO, "test info");
+  log_msg(DEVICE_SERIAL, LOG_ERROR, "test error");
 
   return 35;
 }
