@@ -1,5 +1,5 @@
 #include "../drivers/serial/serial.h"
-// #include "../drivers/vga/vga.h"
+#include "../drivers/vga/vga.h"
 #include "../lib/log.h"
 #include "../lib/stdio.h"
 
@@ -9,6 +9,9 @@ int kmain() {
   serial_configure_line(SERIAL_COM1_BASE);
   serial_configure_buffers(SERIAL_COM1_BASE);
   serial_configure_modem(SERIAL_COM1_BASE);
+
+  /* Clear screen on start */
+  fb_clear_screen();
 
   /* VGA test */
   // char *buf = "----------Hello World!----------\n";

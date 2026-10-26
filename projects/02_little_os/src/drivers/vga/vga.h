@@ -40,4 +40,10 @@ int fb_write(char *buf, unsigned int len);
  * */
 void fb_set_color(unsigned int fg, unsigned int bg);
 
+/* fb_clear_screen
+ * This clear all the VGA screen ( we can call it before printing )
+ *
+ * */
+void fb_clear_screen();
+
 #endif // VGA_H

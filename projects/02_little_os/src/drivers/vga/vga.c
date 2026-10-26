@@ -116,3 +116,8 @@ PUBLIC void fb_set_color(unsigned int fg, unsigned int bg) {
   fg_color = fg;
   bg_color = bg;
 }
+
+PUBLIC void fb_clear_screen() {
+  for (unsigned int i = 0; i < FB_ROW_COUNT - 1; i++)
+    fb_clear_row(i);
+}
