@@ -1,17 +1,24 @@
 #include "../drivers/serial/serial.h"
 #include "../drivers/vga/vga.h"
-#include "../lib/log.h"
+// #include "../lib/log.h"
 #include "../lib/stdio.h"
+#include "../memory/gdt.h"
+
+char *os_name = "little_os";
 
 int kmain() {
+  /*GDT init*/
+  gdt_init();
+
   /* Configure COM1 */
   serial_configure_baud_rate(SERIAL_COM1_BASE, 2);
   serial_configure_line(SERIAL_COM1_BASE);
   serial_configure_buffers(SERIAL_COM1_BASE);
   serial_configure_modem(SERIAL_COM1_BASE);
 
-  /* Clear screen on start */
+  /* Startup initialization */
   fb_clear_screen();
+  printf(DEVICE_VGA, "%s", os_name);
 
   /* VGA test */
   // char *buf = "----------Hello World!----------\n";
@@ -49,12 +56,12 @@ int kmain() {
   // printf(DEVICE_VGA, "%% %t");
 
   /* Log Test */
-  log_msg(DEVICE_VGA, LOG_DEBUG, "test debug");
-  log_msg(DEVICE_VGA, LOG_INFO, "test info");
-  log_msg(DEVICE_VGA, LOG_ERROR, "test error");
-  log_msg(DEVICE_SERIAL, LOG_DEBUG, "test debug");
-  log_msg(DEVICE_SERIAL, LOG_INFO, "test info");
-  log_msg(DEVICE_SERIAL, LOG_ERROR, "test error");
+  // log_msg(DEVICE_VGA, LOG_DEBUG, "test debug");
+  // log_msg(DEVICE_VGA, LOG_INFO, "test info");
+  // log_msg(DEVICE_VGA, LOG_ERROR, "test error");
+  // log_msg(DEVICE_SERIAL, LOG_DEBUG, "test debug");
+  // log_msg(DEVICE_SERIAL, LOG_INFO, "test info");
+  // log_msg(DEVICE_SERIAL, LOG_ERROR, "test error");
 
   return 35;
 }
