@@ -19,6 +19,11 @@ Follow this roadmap and see you at the end:
 - [Core System Programming](./docs/02_core_system_programming.md)
 - [Advanced Topics](./docs/03_advanced_topics.md)
 
+## Projects
+
+- [Virtual LC3](./projects/01_virtual_lc3)
+- [Little OS](/projects/02_little_os)
+
 ## License
 
 This project is under the [MIT License](./LICENSE).
