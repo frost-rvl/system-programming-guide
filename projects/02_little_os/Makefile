@@ -6,7 +6,7 @@ OBJECTS_ASM = $(patsubst src/%.s,build/%_asm.o,$(SOURCES_ASM))
 OBJECTS = $(OBJECTS_C) $(OBJECTS_ASM)
 
 CC= gcc
-CFLAGS= -DPUBLIC= -DPRIVATE=static -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
+CFLAGS= -g -DPUBLIC= -DPRIVATE=static -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 				-nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
 
 LDFLAGS= -T link.ld -melf_i386
@@ -39,6 +39,9 @@ serial: little_os.iso
 	qemu-system-i386 -cdrom little_os.iso \
 		-serial stdio
 
+debug: little_os.iso
+	qemu-system-i386 -s -S -cdrom little_os.iso
+
 build/%.o: src/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $< -o $@
@@ -48,4 +51,4 @@ build/%_asm.o: src/%.s
 	$(AS)	$(ASFLAGS) $< -o $@
 
 clean:
-	rm -rf build/*.o build/kernel.elf little_os.iso
+	rm -rf build/* build/kernel.elf little_os.iso
